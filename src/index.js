@@ -6,6 +6,8 @@ window.addEventListener("load", () => {
     createForm();
 })
 
+const projects = [];
+
 //todo item class
 class Item {
     constructor(name, desc){
@@ -63,7 +65,7 @@ const addFormItems = (form) => {
             case 1:
                 label.innerHTML = `desc:`;
                 label.for = "desc";
-                input.type = "text";
+                input.type = "textarea";
                 input.name = "desc";
                 input.id = "descBtn";
                 break;
@@ -89,12 +91,28 @@ const addFunction = (btn) => {
 const addInput = (input) => {
     input.addEventListener("click", () => {
         showItem();
+        return;
     })
 }
 
 const showItem = () => {
     const name = document.querySelector("#nameBtn");
     const desc = document.querySelector("#descBtn");
-    let item = new Item(name.value, desc.value);
+    const item = new Item(name.value, desc.value);
     console.log(item);
+    createProject(item);
+    name.value = "";
+    desc.value = "";
+    return;
 }
+
+const createProject = (project) => {
+    projects.push(project);
+    console.log(projects);
+    return;
+}
+
+const displayProject = (project) => {
+    console.log("t")    
+}
+
