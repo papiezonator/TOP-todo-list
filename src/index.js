@@ -4,6 +4,7 @@ window.addEventListener("load", () => {
     createBtn();
     createDialog();
     createForm();
+    projectWrapper();
 })
 
 const projects = [];
@@ -108,11 +109,49 @@ const showItem = () => {
 
 const createProject = (project) => {
     projects.push(project);
-    console.log(projects);
+    console.log(project.constructor.length);
+    displayProject(project);
     return;
 }
 
+const projectWrapper = () => {
+    const content = document.querySelector("#content");
+    const div = document.createElement("div")
+    content.appendChild(div);
+    div.id = "projectWrapper";
+}
+
+
 const displayProject = (project) => {
-    console.log("t")    
+    const projectsWrapper = document.querySelector("#projectWrapper");
+        const div = document.createElement("div");
+        //const p = document.createElement("p");
+        projectsWrapper.appendChild(div);
+        div.id = "project"
+        addItems(project);
+    return; 
+}
+
+const addItems = (project) => {
+    for(let i = 0; i <= project.constructor.length; i++){
+        const wrapper = document.querySelector("#project")
+        const div = document.createElement("div");
+        const p = document.createElement("p");
+        switch(i){
+            case 0:
+                wrapper.appendChild(div);
+                div.appendChild(p);
+                p.innerHTML = project.name;
+                console.log(project.name);
+                break;
+            case 1:
+                wrapper.appendChild(div);
+                div.appendChild(p)
+                p.innerHTML = project.desc;
+                console.log(project.desc);
+                break;
+        }
+    }
+    return;
 }
 
