@@ -119,6 +119,7 @@ const projectWrapper = () => {
     const div = document.createElement("div")
     content.appendChild(div);
     div.id = "projectWrapper";
+    return;
 }
 
 
@@ -127,31 +128,33 @@ const displayProject = (project) => {
         const div = document.createElement("div");
         //const p = document.createElement("p");
         projectsWrapper.appendChild(div);
-        div.id = "project"
-        addItems(project);
+        div.className = "project"
+        addItems(project, projectsWrapper);
     return; 
 }
 
-const addItems = (project) => {
+const addItems = (project, parent) => {
     for(let i = 0; i <= project.constructor.length; i++){
-        const wrapper = document.querySelector("#project")
+        const wrapper = document.querySelectorAll(".project")
         const div = document.createElement("div");
         const p = document.createElement("p");
         switch(i){
             case 0:
-                wrapper.appendChild(div);
+                wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
                 p.innerHTML = project.name;
                 console.log(project.name);
                 break;
             case 1:
-                wrapper.appendChild(div);
+                wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p)
                 p.innerHTML = project.desc;
                 console.log(project.desc);
                 break;
         }
+        console.log(wrapper)
     }
+    
     return;
 }
 
