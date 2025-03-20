@@ -11,9 +11,10 @@ const projects = [];
 
 //todo item class
 class Item {
-    constructor(name, desc){
+    constructor(name, desc, todos){
         this.name = name;
         this.desc = desc;
+        this.todos = todos;
     }
 }
 
@@ -99,7 +100,7 @@ const addInput = (input) => {
 const showItem = () => {
     const name = document.querySelector("#nameBtn");
     const desc = document.querySelector("#descBtn");
-    const item = new Item(name.value, desc.value);
+    const item = new Item(name.value, desc.value, []);
     console.log(item);
     createProject(item);
     name.value = "";
@@ -109,7 +110,7 @@ const showItem = () => {
 
 const createProject = (project) => {
     projects.push(project);
-    console.log(project.constructor.length);
+    //console.log(project.constructor.length);
     displayProject(project);
     return;
 }
@@ -133,8 +134,16 @@ const displayProject = (project) => {
     return; 
 }
 
+const clickDiv = () => {
+    const divs = document.querySelectorAll(".project")
+    console.log(divs.length);
+    divs[divs.length-1].addEventListener("click", () => {
+        console.log(divs[divs.length-1]);
+    })
+}
+
 const addItems = (project, parent) => {
-    for(let i = 0; i <= project.constructor.length; i++){
+    for(let i = 0; i < project.constructor.length; i++){
         const wrapper = document.querySelectorAll(".project")
         const div = document.createElement("div");
         const p = document.createElement("p");
@@ -143,18 +152,24 @@ const addItems = (project, parent) => {
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
                 p.innerHTML = project.name;
-                console.log(project.name);
+                //console.log(project.name);
                 break;
             case 1:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p)
                 p.innerHTML = project.desc;
-                console.log(project.desc);
+                //console.log(project.desc);
                 break;
         }
-        console.log(wrapper)
+        //console.log(wrapper)
     }
-    
+
+    console.log(projects, projects[0].todos);
+    clickDiv();
     return;
 }
+
+
+
+console.log(projects);
 
