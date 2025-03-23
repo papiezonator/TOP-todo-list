@@ -190,6 +190,7 @@ const displayTodo = (todo, project) => {
                 break;
             case 1:
                 addTodo(todo, project, content);
+                addButtons(todo, project);
                 break;
         }
     }
@@ -198,15 +199,19 @@ const displayTodo = (todo, project) => {
 
 const addTodo = (todo, project, content) => {
     const todoItem = document.querySelector(".todoItem");
-    for(let i = 0; i < todo.childElementCount; i++){
+    const createDiv = document.createElement("div");
+    todoItem.appendChild(createDiv);
+    createDiv.id = "todoMain"
+    for(let i = 0; i < todo.childElementCount; i++){    
         const createP = document.createElement("p");
         switch(i){
             case 0:
-                todoItem.appendChild(createP);
+                createDiv.appendChild(createP);
                 createP.innerHTML = project.name;
+                console.log(todoItem)
                 break;
             case 1:
-                todoItem.appendChild(createP);
+                createDiv.appendChild(createP);
                 createP.innerHTML = project.desc;
                 break;
         }
@@ -215,5 +220,24 @@ const addTodo = (todo, project, content) => {
     return;
 }
 
+const addButtons = (todo, project) => {
+    const todoItem = document.querySelector(".todoItem");
+    const createDiv = document.createElement("div");
+    todoItem.appendChild(createDiv);
+    createDiv.id = "buttons";
+    for(let i = 0; i < todo.childElementCount; i++){
+        const createBtn = document.createElement("button");
+        switch(i){
+            case 0:
+                createDiv.appendChild(createBtn);
+                createBtn.innerHTML = "add task"
+                break;
+            case 1:
+                console.log("im in btn", project.todos);
+                break;
+        }
+    }
+    return
+}
 console.log(projects);
 
