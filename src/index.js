@@ -181,21 +181,27 @@ const displayTodo = (todo, project) => {
     console.log(todo.childNodes);
     console.log(project);
     const content = document.querySelector("#content");
-    for(let i = 0; i < todo.childElementCount; i++){
-        switch(i){
-            case 0:
-                const createDiv = document.createElement("div");
-                content.appendChild(createDiv);
-                createDiv.className = "todoItem";
-                break;
-            case 1:
-                addTodo(todo, project, content);
-                addButtons(todo, project);
-                break;
+    if(content.childElementCount == 2){
+        return;
+    } else {
+        for(let i = 0; i < todo.childElementCount; i++){
+            switch(i){
+                case 0:
+                    const createDiv = document.createElement("div");
+                    content.appendChild(createDiv);
+                    createDiv.className = "todoItem";
+                    break;
+                case 1:
+                    addTodo(todo, project, content);
+                    
+                    break;
+            }
         }
     }
     return;
 }
+
+
 
 const addTodo = (todo, project, content) => {
     const todoItem = document.querySelector(".todoItem");
@@ -217,6 +223,7 @@ const addTodo = (todo, project, content) => {
         }
 
     }
+    addButtons(todo, project);
     return;
 }
 
