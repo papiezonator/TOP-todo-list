@@ -134,13 +134,21 @@ const displayProject = (project) => {
     return; 
 }
 
+
+
+
 const clickDiv = () => {
     const divs = document.querySelectorAll(".project")
-    console.log(divs.length);
+    const project = projects[projects.length-1]
+    
     divs[divs.length-1].addEventListener("click", () => {
-        console.log(divs[divs.length-1]);
+        //console.log(divs[divs.length-1]);
+        displayTodo(divs[divs.length-1], project);
+        
     })
+    return;
 }
+
 
 const addItems = (project, parent) => {
     for(let i = 0; i < project.constructor.length; i++){
@@ -169,7 +177,43 @@ const addItems = (project, parent) => {
     return;
 }
 
+const displayTodo = (todo, project) => {
+    console.log(todo.childNodes);
+    console.log(project);
+    const content = document.querySelector("#content");
+    for(let i = 0; i < todo.childElementCount; i++){
+        switch(i){
+            case 0:
+                const createDiv = document.createElement("div");
+                content.appendChild(createDiv);
+                createDiv.className = "todoItem";
+                break;
+            case 1:
+                addTodo(todo, project, content);
+                break;
+        }
+    }
+    return;
+}
 
+const addTodo = (todo, project, content) => {
+    const todoItem = document.querySelector(".todoItem");
+    for(let i = 0; i < todo.childElementCount; i++){
+        const createP = document.createElement("p");
+        switch(i){
+            case 0:
+                todoItem.appendChild(createP);
+                createP.innerHTML = project.name;
+                break;
+            case 1:
+                todoItem.appendChild(createP);
+                createP.innerHTML = project.desc;
+                break;
+        }
+
+    }
+    return;
+}
 
 console.log(projects);
 
