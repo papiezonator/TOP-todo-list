@@ -232,9 +232,13 @@ const addButtons = (todo, project) => {
         switch(i){
             case 0:
                 createDiv.appendChild(createBtn);
-                createBtn.innerHTML = "add task"
+                createBtn.innerHTML = "add task";
+                createBtn.className = "taskBtn";
                 break;
             case 1:
+                createDiv.appendChild(createBtn);
+                createBtn.innerHTML = "hide todo";
+                createBtn.className = "hideBtn";
                 console.log("im in btn", project.todos);
                 break;
         }
