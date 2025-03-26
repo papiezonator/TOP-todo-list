@@ -135,24 +135,9 @@ const displayProject = (project) => {
 }
 
 
-
-
-const clickDiv = () => {
-    const divs = document.querySelectorAll(".project")
-    const project = projects[projects.length-1]
-    
-    divs[divs.length-1].addEventListener("click", () => {
-        //console.log(divs[divs.length-1]);
-        displayTodo(divs[divs.length-1], project);
-        
-    })
-    return;
-}
-
-
 const addItems = (project, parent) => {
     for(let i = 0; i < project.constructor.length; i++){
-        const wrapper = document.querySelectorAll(".project")
+        const wrapper = document.querySelectorAll(".project");
         const div = document.createElement("div");
         const p = document.createElement("p");
         switch(i){
@@ -172,8 +157,22 @@ const addItems = (project, parent) => {
         //console.log(wrapper)
     }
 
-    console.log(projects, projects[0].todos);
+    //console.log(projects, projects[0].todos);
     clickDiv();
+    return;
+}
+
+const clickDiv = () => {
+    const divs = document.querySelectorAll(".project")
+    const project = projects[projects.length-1]
+    const content = document.querySelector("#content");
+    divs[divs.length-1].addEventListener("click", () => {
+        //console.log(divs[divs.length-1]);
+        if (content.childElementCount === 2){
+            content.removeChild(content.lastChild);
+        }    
+        displayTodo(divs[divs.length-1], project);
+    })
     return;
 }
 
@@ -181,23 +180,19 @@ const displayTodo = (todo, project) => {
     console.log(todo.childNodes);
     console.log(project);
     const content = document.querySelector("#content");
-    if(content.childElementCount == 2){
-        return;
-    } else {
         for(let i = 0; i < todo.childElementCount; i++){
             switch(i){
                 case 0:
                     const createDiv = document.createElement("div");
                     content.appendChild(createDiv);
                     createDiv.className = "todoItem";
+                    createDiv.innerHTML = "";
                     break;
                 case 1:
                     addTodo(todo, project, content);
-                    
                     break;
             }
         }
-    }
     return;
 }
 
@@ -210,7 +205,7 @@ const addTodo = (todo, project, content) => {
     createDiv.id = "todoMain"
     for(let i = 0; i < todo.childElementCount; i++){    
         const createP = document.createElement("p");
-        switch(i){
+        switch(i){  
             case 0:
                 createDiv.appendChild(createP);
                 createP.innerHTML = project.name;
