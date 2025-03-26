@@ -1,3 +1,24 @@
 body {
-    background-color: purple;
+    background-color: white;
 }
+
+#content {
+    display: flex;
+}
+
+#header-wrapper {
+    border: 2px solid red;
+
+}
+
+.project {
+    border: 2px solid black;
+    margin-top: 5px;
+    width: 20vh;
+}
+
+.todoItem {
+    border: 2px solid grey;
+    margin-left: 5px;
+}
+
