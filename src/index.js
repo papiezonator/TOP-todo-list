@@ -20,7 +20,7 @@ class Item {
 
 //creating btn for triggering dialog
 const createBtn = () =>{
-    const headerWrapper = document.querySelector("#header-wrapper");
+    const headerWrapper = document.querySelector("#content");
     const btn = document.createElement("button");
     headerWrapper.appendChild(btn);
     btn.id = "addBtn";
@@ -30,7 +30,7 @@ const createBtn = () =>{
 
 //creating the dialog
 const createDialog = () => {
-    const headerWrapper = document.querySelector("#header-wrapper");
+    const headerWrapper = document.querySelector("#content");
     const dialog = document.createElement("dialog");
     headerWrapper.appendChild(dialog);
     dialog.id = "dialog";
@@ -168,7 +168,7 @@ const clickDiv = () => {
     const content = document.querySelector("#content");
     divs[divs.length-1].addEventListener("click", () => {
         //console.log(divs[divs.length-1]);
-        if (content.childElementCount === 2){
+        if (content.childElementCount === 4){
             content.removeChild(content.lastChild);
         }    
         displayTodo(divs[divs.length-1], project);
