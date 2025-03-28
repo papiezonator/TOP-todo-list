@@ -239,11 +239,20 @@ const addButtons = (todo, project) => {
                 createDiv.appendChild(createBtn);
                 createBtn.innerHTML = "hide todo";
                 createBtn.className = "hideBtn";
+                hideBtn(createBtn, todoItem);
                 console.log("im in btn", project.todos);
                 break;
         }
     }
     return
+}
+
+const hideBtn = (btn, todo) => {
+    const content = document.querySelector("#content");
+    btn.addEventListener("click", () =>{
+        content.removeChild(todo);
+        return;
+    })
 }
 console.log(projects);
 
