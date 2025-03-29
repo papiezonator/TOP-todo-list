@@ -186,14 +186,20 @@ const addItems = (project, parent) => {
 //removing the todo
 const deleteBtn = (btn, proj) => {
     const wrapper = document.querySelector("#projectWrapper");
+    const content = document.querySelector("#content");
+    
     btn.addEventListener("click", () =>{
-        console.log("HERE!", proj, projects);
+        console.log("HERE!", event.target.className);
         wrapper.removeChild(proj);
+        console.log();
+        //wrapper.removeChild(item);
+        //content.removeChild(content.lastChild);
         return;
     })
 }
 
 const clickDiv = () => {
+    
     const divs = document.querySelectorAll(".project")
     const project = projects[projects.length-1]
     const content = document.querySelector("#content");
@@ -210,21 +216,25 @@ const clickDiv = () => {
 const displayTodo = (todo, project) => {
     console.log(todo.childNodes);
     console.log(project);
+    let target = event.target.className;
     const content = document.querySelector("#content");
-        for(let i = 0; i < todo.childElementCount; i++){
-            switch(i){
-                case 0:
-                    const createDiv = document.createElement("div");
-                    content.appendChild(createDiv);
-                    createDiv.className = "todoItem";
-                    createDiv.innerHTML = "";
-                    break;
-                case 1:
-                    addTodo(todo, project, content);
-                    break;
+        if(target != "delBtn"){
+            for(let i = 0; i < todo.childElementCount; i++){
+                switch(i){
+                    case 0:
+                        const createDiv = document.createElement("div");
+                        content.appendChild(createDiv);
+                        createDiv.className = "todoItem";
+                        createDiv.innerHTML = "";
+                        break;
+                    case 1:
+                        addTodo(todo, project, content);
+                        break;
+                }
             }
+        } else {
+            return;
         }
-    return;
 }
 
 
