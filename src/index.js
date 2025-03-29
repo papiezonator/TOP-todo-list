@@ -204,10 +204,11 @@ const clickDiv = () => {
     const project = projects[projects.length-1]
     const content = document.querySelector("#content");
     divs[divs.length-1].addEventListener("click", () => {
+        console.log("tttt", event.target)
         //console.log(divs[divs.length-1]);
-        if (content.childElementCount === 4){
+        if (event.target.className != "delBtn" && content.childElementCount === 4){
             content.removeChild(content.lastChild);
-        }    
+        }
         displayTodo(divs[divs.length-1], project);
     })
     return;
