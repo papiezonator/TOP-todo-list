@@ -11,9 +11,10 @@ const projects = [];
 
 //todo item class
 class Item {
-    constructor(name, desc, todos){
+    constructor(name, desc, status, todos){
         this.name = name;
         this.desc = desc;
+        this.status = status;
         this.todos = todos;
     }
 }
@@ -100,7 +101,7 @@ const addInput = (input) => {
 const showItem = () => {
     const name = document.querySelector("#nameBtn");
     const desc = document.querySelector("#descBtn");
-    const item = new Item(name.value, desc.value, []);
+    const item = new Item(name.value, desc.value, "incomplete", []);
     console.log(item);
     createProject(item);
     name.value = "";
