@@ -146,6 +146,7 @@ const addItems = (project, parent) => {
             case 0:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
+                div.className = "item";
                 p.className = "name";
                 p.innerHTML = project.name;
                 //console.log(project.name);
@@ -153,6 +154,7 @@ const addItems = (project, parent) => {
             case 1:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p)
+                div.className = "item";
                 p.className = "desc";
                 p.innerHTML = project.desc;
                 //console.log(project.desc);
@@ -160,14 +162,17 @@ const addItems = (project, parent) => {
             case 2:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
+                div.className = "item";
                 p.className = "status";
                 p.innerHTML = project.status;
                 break;
             case 3:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(btn);
+                div.className = "item";
                 btn.className = "delBtn";
                 btn.innerHTML = "delete";
+                deleteBtn(btn, wrapper[parent.childElementCount-1]);
                 break; 
         }
         //console.log(wrapper)
@@ -176,6 +181,16 @@ const addItems = (project, parent) => {
     //console.log(projects, projects[0].todos);
     clickDiv();
     return;
+}
+
+//removing the todo
+const deleteBtn = (btn, proj) => {
+    const wrapper = document.querySelector("#projectWrapper");
+    btn.addEventListener("click", () =>{
+        console.log("HERE!", proj, projects);
+        wrapper.removeChild(proj);
+        return;
+    })
 }
 
 const clickDiv = () => {
