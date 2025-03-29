@@ -141,19 +141,34 @@ const addItems = (project, parent) => {
         const wrapper = document.querySelectorAll(".project");
         const div = document.createElement("div");
         const p = document.createElement("p");
+        const btn = document.createElement("button");
         switch(i){
             case 0:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
+                p.className = "name";
                 p.innerHTML = project.name;
                 //console.log(project.name);
                 break;
             case 1:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p)
+                p.className = "desc";
                 p.innerHTML = project.desc;
                 //console.log(project.desc);
                 break;
+            case 2:
+                wrapper[parent.childElementCount-1].appendChild(div);
+                div.appendChild(p);
+                p.className = "status";
+                p.innerHTML = project.status;
+                break;
+            case 3:
+                wrapper[parent.childElementCount-1].appendChild(div);
+                div.appendChild(btn);
+                btn.className = "delBtn";
+                btn.innerHTML = "delete";
+                break; 
         }
         //console.log(wrapper)
     }
