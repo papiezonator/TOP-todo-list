@@ -22,3 +22,11 @@ body {
     margin-left: 5px;
 }
 
+.incomplete {
+    color: red;
+}
+
+.completed {
+    color: green;
+}
+
