@@ -163,7 +163,7 @@ const addItems = (project, parent) => {
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
                 div.className = "item";
-                p.className = "status";
+                p.className = "incomplete";
                 p.innerHTML = project.status;
                 break;
             case 3:
@@ -261,7 +261,7 @@ const addTodo = (todo, project, content) => {
                 break;
             case 2:
                 createDiv.appendChild(createP);
-                createP.className = "status";
+                createP.className = "incomplete";
                 createP.innerHTML = project.status;
                 break;
         }
