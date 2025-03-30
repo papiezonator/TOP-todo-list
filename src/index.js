@@ -250,12 +250,19 @@ const addTodo = (todo, project, content) => {
         switch(i){  
             case 0:
                 createDiv.appendChild(createP);
+                createP.className = "name";
                 createP.innerHTML = project.name;
-                console.log(todoItem)
+                //console.log(todoItem)
                 break;
             case 1:
                 createDiv.appendChild(createP);
+                createP.className = "desc";
                 createP.innerHTML = project.desc;
+                break;
+            case 2:
+                createDiv.appendChild(createP);
+                createP.className = "status";
+                createP.innerHTML = project.status;
                 break;
         }
 
