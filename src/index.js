@@ -183,6 +183,8 @@ const addItems = (project, parent) => {
     return;
 }
 
+
+
 //removing the todo
 const deleteBtn = (btn, proj) => {
     const wrapper = document.querySelector("#projectWrapper");
@@ -191,7 +193,6 @@ const deleteBtn = (btn, proj) => {
     btn.addEventListener("click", () =>{
         console.log("HERE!", event.target.className);
         wrapper.removeChild(proj);
-        console.log();
         //wrapper.removeChild(item);
         //content.removeChild(content.lastChild);
         return;
@@ -263,12 +264,21 @@ const addTodo = (todo, project, content) => {
                 createDiv.appendChild(createP);
                 createP.className = "incomplete";
                 createP.innerHTML = project.status;
+                switchStatus(createP, project);
                 break;
         }
 
     }
     addButtons(todo, project);
     return;
+}
+
+const switchStatus = (btn, project) => {
+    btn.addEventListener("click", () =>{
+        project.status = "completed"
+        btn.className = "completed";
+        btn.innerHTML = project.status;
+    })
 }
 
 const addButtons = (todo, project) => {
