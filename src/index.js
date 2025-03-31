@@ -264,7 +264,7 @@ const addTodo = (todo, project, content) => {
                 createDiv.appendChild(createP);
                 createP.className = "incomplete";
                 createP.innerHTML = project.status;
-                switchStatus(createP, project);
+                switchStatus(createP, project, todo);
                 break;
         }
 
@@ -273,9 +273,11 @@ const addTodo = (todo, project, content) => {
     return;
 }
 
-const switchStatus = (btn, project) => {
+const switchStatus = (btn, project, todo) => {
     btn.addEventListener("click", () =>{
         project.status = "completed"
+        todo.childNodes[2].lastChild.innerHTML = project.status;
+        todo.childNodes[2].lastChild.className = "completed";
         btn.className = "completed";
         btn.innerHTML = project.status;
     })
