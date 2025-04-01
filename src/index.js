@@ -274,13 +274,35 @@ const addTodo = (todo, project, content) => {
 }
 
 const switchStatus = (btn, project, todo) => {
-    btn.addEventListener("click", () =>{
-        project.status = "completed"
-        todo.childNodes[2].lastChild.innerHTML = project.status;
-        todo.childNodes[2].lastChild.className = "completed";
-        btn.className = "completed";
-        btn.innerHTML = project.status;
-    })
+        btn.addEventListener("click", () =>{
+            if(project.status === "incomplete"){
+                switchComplete(btn, project, todo);
+                console.log(project, project.status);
+                return;
+            } else {;
+                switchIncomplete(btn, project, todo);
+                return;
+            }
+        })
+    return;
+}
+
+const switchComplete = (btn, project, todo) => {
+    project.status = "completed";
+    todo.childNodes[2].lastChild.innerHTML = project.status;
+    todo.childNodes[2].lastChild.className = "completed";
+    btn.className = "completed";
+    btn.innerHTML = project.status;
+    return;
+}
+
+const switchIncomplete = (btn, project, todo) => {
+    project.status = "incomplete";
+    todo.childNodes[2].lastChild.innerHTML = project.status;
+    todo.childNodes[2].lastChild.className = "incomplete";
+    btn.className = "incomplete";
+    btn.innerHTML = project.status;
+    return;
 }
 
 const addButtons = (todo, project) => {
