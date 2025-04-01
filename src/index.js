@@ -102,8 +102,9 @@ const showItem = () => {
     const name = document.querySelector("#nameBtn");
     const desc = document.querySelector("#descBtn");
     const item = new Item(name.value, desc.value, "incomplete", []);
-    console.log(item);
-    createProject(item);
+    //console.log(item);
+    //createProject(item);
+    displayProject(item);
     name.value = "";
     desc.value = "";
     return;
@@ -179,7 +180,7 @@ const addItems = (project, parent) => {
     }
 
     //console.log(projects, projects[0].todos);
-    clickDiv();
+    clickDiv(project);
     return;
 }
 
@@ -199,10 +200,10 @@ const deleteBtn = (btn, proj) => {
     })
 }
 
-const clickDiv = () => {
+const clickDiv = (project) => {
     
     const divs = document.querySelectorAll(".project")
-    const project = projects[projects.length-1]
+    //const project = projects[projects.length-1]
     const content = document.querySelector("#content");
     divs[divs.length-1].addEventListener("click", () => {
         console.log("tttt", event.target)
@@ -284,7 +285,6 @@ const switchStatus = (btn, project, todo) => {
                 return;
             }
         })
-    return;
 }
 
 const switchComplete = (btn, project, todo) => {
