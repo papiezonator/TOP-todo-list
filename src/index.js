@@ -7,13 +7,14 @@ window.addEventListener("load", () => {
     projectWrapper();
 })
 
-const projects = [];
+//const projects = [];
 
 //todo item class
 class Item {
-    constructor(name, desc, status, todos){
+    constructor(name, desc, date, status, todos){
         this.name = name;
         this.desc = desc;
+        this.date = date
         this.status = status;
         this.todos = todos;
     }
@@ -50,7 +51,7 @@ const createForm = () => {
 
 //adding form children
 const addFormItems = (form) => {
-    for(let i = 0; i < 3; i++){
+    for(let i = 0; i < 4; i++){
         const div = document.createElement("div");
         const label = document.createElement("label");
         const input = document.createElement("input");
@@ -73,6 +74,13 @@ const addFormItems = (form) => {
                 input.id = "descBtn";
                 break;
             case 2:
+                label.innerHTML = `due date: `;
+                label.for = "date";
+                input.type = "date";
+                input.name = "date";
+                input.id = "dateBtn";
+                break;
+            case 3:
                 input.type = "submit";
                 input.name = "submit";
                 input.id = "submit";
@@ -101,12 +109,14 @@ const addInput = (input) => {
 const showItem = () => {
     const name = document.querySelector("#nameBtn");
     const desc = document.querySelector("#descBtn");
-    const item = new Item(name.value, desc.value, "incomplete", []);
+    const date = document.querySelector("#dateBtn");
+    const item = new Item(name.value, desc.value, date.value, "incomplete", []);
     //console.log(item);
     //createProject(item);
     displayProject(item);
     name.value = "";
     desc.value = "";
+    date.value = "";
     return;
 }
 
@@ -162,12 +172,20 @@ const addItems = (project, parent) => {
                 break;
             case 2:
                 wrapper[parent.childElementCount-1].appendChild(div);
+                console.log("fsdafsafdsaafd", project.date);
+                div.appendChild(p)
+                div.className = "item";
+                p.className = "date";
+                p.innerHTML = project.date;
+                break;
+            case 3:
+                wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(p);
                 div.className = "item";
                 p.className = "incomplete";
                 p.innerHTML = project.status;
                 break;
-            case 3:
+            case 4:
                 wrapper[parent.childElementCount-1].appendChild(div);
                 div.appendChild(btn);
                 div.className = "item";
@@ -206,9 +224,9 @@ const clickDiv = (project) => {
     //const project = projects[projects.length-1]
     const content = document.querySelector("#content");
     divs[divs.length-1].addEventListener("click", () => {
-        console.log("tttt", event.target)
+        //console.log("tttt", event.target)
         //console.log(divs[divs.length-1]);
-        if (event.target.className != "delBtn" && content.childElementCount === 4){
+        if (event.target.className != "delBtn" && content.childElementCount === 5){
             content.removeChild(content.lastChild);
         }
         displayTodo(divs[divs.length-1], project);
@@ -263,6 +281,11 @@ const addTodo = (todo, project, content) => {
                 break;
             case 2:
                 createDiv.appendChild(createP);
+                createP.className = "date";
+                createP.innerHTML = project.date;
+                break;
+            case 3:
+                createDiv.appendChild(createP);
                 createP.className = "incomplete";
                 createP.innerHTML = project.status;
                 switchStatus(createP, project, todo);
@@ -289,8 +312,8 @@ const switchStatus = (btn, project, todo) => {
 
 const switchComplete = (btn, project, todo) => {
     project.status = "completed";
-    todo.childNodes[2].lastChild.innerHTML = project.status;
-    todo.childNodes[2].lastChild.className = "completed";
+    todo.childNodes[3].lastChild.innerHTML = project.status;
+    todo.childNodes[3].lastChild.className = "completed";
     btn.className = "completed";
     btn.innerHTML = project.status;
     return;
@@ -298,8 +321,8 @@ const switchComplete = (btn, project, todo) => {
 
 const switchIncomplete = (btn, project, todo) => {
     project.status = "incomplete";
-    todo.childNodes[2].lastChild.innerHTML = project.status;
-    todo.childNodes[2].lastChild.className = "incomplete";
+    todo.childNodes[3].lastChild.innerHTML = project.status;
+    todo.childNodes[3].lastChild.className = "incomplete";
     btn.className = "incomplete";
     btn.innerHTML = project.status;
     return;
@@ -337,5 +360,5 @@ const hideBtn = (btn, todo) => {
         return;
     })
 }
-console.log(projects);
+//console.log(projects);
 
